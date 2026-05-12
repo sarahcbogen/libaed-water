@@ -626,7 +626,8 @@ dP = P * (VCP/QP - RPT)
 
 !Changes of cellular Chl [d-1]:
 !ML corresponds to eq. 3 in PIBM ms
-dChl = Chl * (rhochl*min(VCN, VCP) / theta - RChlT)
+!dChl = Chl * (rhochl*min(VCN, VCP) / theta - RChlT) ! ML version
+dChl = Chl * (rhochl*VCN / theta - RChlT) ! SB version
 
 return
 END subroutine GMK98_Ind_TempSizeLight
