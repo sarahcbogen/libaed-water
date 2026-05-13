@@ -1043,7 +1043,7 @@ SUBROUTINE aed_particle_bgc_phyto_abm( data,column,layer_idx,ppid,p )
    IF (AllocateStatus /= 0) STOP "*** Problem in allocating index_***"
 
    do i = 1, N_PAR 
-      if (_PTM_STAT_(i,STAT) == 1) then !Ignore dead super-individuals
+      if (_PTM_STAT_(i,STAT) == 1 .AND. PTM_STAT(i,FLAG) == 0) then !Ignore dead super-individuals SCB - and exclude si's not in water column
          N_ = N_ + 1
          if (N_ == 1) then
              allocate(scratch(1), stat=Allocatestatus)
