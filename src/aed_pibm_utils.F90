@@ -593,7 +593,8 @@ if (PAR <= 0d0) then
 else
    !ML corresponds to eq. 9 in PIBM ms
    ! rhochl   = min(thetaNmax, thetaPmax) * PC / alphachl_ / theta / PAR ! ML this is now regulated by both P and N
-   rhochl   = min(thetaNmax, thetaPmax) * PC / alphachl_ / theta / PAR / Ainf! SB also divided by Ainf to match Geider 1998 - see if this resolves issues
+   ! rhochl   = min(thetaNmax, thetaPmax) * PC / alphachl_ / theta / PAR / Ainf! SB also divided by Ainf to match Geider 1998 - see if this resolves issues
+   rhochl   = thetaNmax * PC / alphachl_ / theta / PAR ! SB remove thetaP limitation
    rhoChl_L = rhochl
 endif
 
@@ -627,8 +628,8 @@ dP = P * (VCP/QP - RPT)
 
 !Changes of cellular Chl [d-1]:
 !ML corresponds to eq. 3 in PIBM ms
-dChl = Chl * (rhochl*min(VCN, VCP) / theta - RChlT) ! MEL code - limiting from both N and P
-!dChl = Chl * (rhochl*VCN / theta - RChlT) ! SB test version - N limiting only
+!dChl = Chl * (rhochl*min(VCN, VCP) / theta - RChlT) ! MEL code - limiting from both N and P
+dChl = Chl * (rhochl*VCN / theta - RChlT) ! SB test version - N limiting only
 
 return
 END subroutine GMK98_Ind_TempSizeLight
