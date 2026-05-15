@@ -1373,7 +1373,8 @@ IF (N_ > 0) THEN
    DO i = 1, N_
 
    ! Cell division: if cellular carbon is above the division threshold, it divides
-   IF (p(i)%ptm_state(data%ip_c) >= p(i)%ptm_state(data%ip_cdiv)) THEN  !Divide
+   ! IF (p(i)%ptm_state(data%ip_c) >= p(i)%ptm_state(data%ip_cdiv)) THEN  !Divide
+   IF (.false.) THEN ! division disabled
       !print *, 'I divided!'
       _DIAG_VAR_(data%id_N_birth) = _DIAG_VAR_(data%id_N_birth) + 1.
       p(i)%ptm_state(data%ip_c)   = p(i)%ptm_state(data%ip_c)/2d0
