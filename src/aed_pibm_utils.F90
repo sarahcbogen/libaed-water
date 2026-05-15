@@ -592,7 +592,8 @@ if (PAR <= 0d0) then
    rhochl   = rhoChl_L
 else
    !ML corresponds to eq. 9 in PIBM ms
-   rhochl   = min(thetaNmax, thetaPmax) * PC / alphachl_ / theta / PAR ! ML this is now regulated by both P and N
+   ! rhochl   = min(thetaNmax, thetaPmax) * PC / alphachl_ / theta / PAR ! ML this is now regulated by both P and N
+   rhochl   = min(thetaNmax, thetaPmax) * PC / alphachl_ / theta / PAR / Ainf! SB also divided by Ainf to match Geider 1998 - see if this resolves issues
    rhoChl_L = rhochl
 endif
 
